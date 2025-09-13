@@ -1,5 +1,6 @@
 package com.example.sushi.features.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,8 +17,10 @@ import com.example.sushi.model.Product
 import coil.compose.AsyncImage
 
 @Composable
-fun ProductItem(product: Product) {
-    Row (modifier = Modifier.fillMaxWidth().padding(16.dp)){
+fun ProductItem(product: Product,onClick: () -> Unit) {
+    Row (modifier = Modifier.fillMaxWidth().clickable { onClick() }.padding(16.dp)
+
+    ){
         AsyncImage(
             model = product.imageUrl,
             contentDescription = product.name,
