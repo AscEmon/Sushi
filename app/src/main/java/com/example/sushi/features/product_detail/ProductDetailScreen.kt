@@ -6,17 +6,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.example.sushi.features.cart.CartViewModel
 import com.example.sushi.model.Product
 import com.example.sushi.ui.common.BaseScreen
 
 @Composable
-fun ProductDetailScreen(product: Product?, navController: NavController) {
+fun ProductDetailScreen(product: Product?, navController: NavController,cartViewModel : CartViewModel) {
 
     BaseScreen(
         title = "Product Details", navController = navController, content = {
@@ -35,6 +38,10 @@ fun ProductDetailScreen(product: Product?, navController: NavController) {
                 Text(text = "${product?.name}")
                 Spacer(Modifier.padding(vertical = 8.dp))
                 Text(text = "${product?.price}")
+
+                Button(onClick = { cartViewModel.addToCart(product!!) }) {
+                    Text("Add to Cart")
+                }
 
             }
         }

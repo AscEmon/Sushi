@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.sushi.features.cart.CartViewModel
 import com.example.sushi.features.home.ProductItem
 import com.example.sushi.features.home.ProductViewModel
 import com.example.sushi.navigation.routes.Routes
@@ -14,8 +15,9 @@ import com.example.sushi.ui.common.BaseScreen
 
 @Composable
 fun ProductListScreen(
-    navController: NavController, viewModel: ProductViewModel = viewModel()
+    navController: NavController,viewModel: ProductViewModel ,cartViewModel: CartViewModel
 ) {
+
     val products = viewModel.products.value
 
     BaseScreen(
@@ -28,7 +30,10 @@ fun ProductListScreen(
                 items(products) { product ->
                     ProductItem(product, onClick = {
                         navController.navigate("${Routes.PRODUCT_DETAIL}/${product.id}")
-                    })
+                    }, onClickProductAdd = {
+                        cartViewModel.addToCart(product)
+                    }
+                        )
                 }
             }
         }

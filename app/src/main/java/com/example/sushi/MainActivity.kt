@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import com.example.sushi.features.cart.CartViewModel
 import com.example.sushi.navigation.routes.AppNavGraph
 
 
@@ -16,7 +18,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
-            AppNavGraph(navController =navController)
+            // ✅ Single instance shared everywhere
+            val cartViewModel: CartViewModel = viewModel()
+
+            AppNavGraph(navController = navController, cartViewModel = cartViewModel)
         }
     }
 }
@@ -27,6 +32,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     val navController = rememberNavController()
-    AppNavGraph(navController =navController)
+    val cartViewModel: CartViewModel = viewModel()
+    AppNavGraph(navController =navController,cartViewModel)
 
 }

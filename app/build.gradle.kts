@@ -67,6 +67,7 @@ dependencies {
 
     // ViewModel for Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.play.services.analytics.impl)
 
     // Testing
     testImplementation(libs.junit)

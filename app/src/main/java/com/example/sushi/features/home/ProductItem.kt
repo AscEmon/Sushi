@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,7 +18,7 @@ import com.example.sushi.model.Product
 import coil.compose.AsyncImage
 
 @Composable
-fun ProductItem(product: Product,onClick: () -> Unit) {
+fun ProductItem(product: Product,onClick: () -> Unit, onClickProductAdd: () -> Unit) {
     Row (modifier = Modifier.fillMaxWidth().clickable { onClick() }.padding(16.dp)
 
     ){
@@ -32,6 +33,8 @@ fun ProductItem(product: Product,onClick: () -> Unit) {
             Text(text = "$${product.price}", style = MaterialTheme.typography.bodyMedium)
         }
 
-
+        Button(onClick = onClickProductAdd ) {
+            Text("Add to Cart")
+        }
     }
 }
